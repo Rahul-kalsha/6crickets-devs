@@ -1,10 +1,10 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CountdownComponent } from './countdown.component';
 import { DeadlineService } from '../../services/deadline.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { of, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 describe('CountdownComponent', () => {
   let component: CountdownComponent;
