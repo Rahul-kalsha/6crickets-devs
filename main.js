@@ -1,42 +1,14 @@
 /******/ var __webpack_modules__ = ({
 
-/***/ 7547:
-/*!***********************!*\
-  !*** container entry ***!
-  \***********************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ 1695:
+/*!***********************************************!*\
+  !*** ./projects/coding-challenge/src/main.ts ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-var moduleMap = {
-	"./Component": () => {
-		return __webpack_require__.e("projects_coding-challenge_src_app_components_countdown_countdown_component_ts").then(() => (() => ((__webpack_require__(/*! ./projects/coding-challenge/src/app/components/countdown/countdown.component.ts */ 3035)))));
-	}
-};
-var get = (module, getScope) => {
-	__webpack_require__.R = getScope;
-	getScope = (
-		__webpack_require__.o(moduleMap, module)
-			? moduleMap[module]()
-			: Promise.resolve().then(() => {
-				throw new Error('Module "' + module + '" does not exist in container.');
-			})
-	);
-	__webpack_require__.R = undefined;
-	return getScope;
-};
-var init = (shareScope, initScope) => {
-	if (!__webpack_require__.S) return;
-	var name = "default"
-	var oldScope = __webpack_require__.S[name];
-	if(oldScope && oldScope !== shareScope) throw new Error("Container initialization failed as it has already been initialized with a different share scope");
-	__webpack_require__.S[name] = shareScope;
-	return __webpack_require__.I(name, initScope);
-};
 
-// This exports getters to disallow modifications
-__webpack_require__.d(exports, {
-	get: () => (get),
-	init: () => (init)
-});
+
+__webpack_require__.e(/*! import() */ "projects_coding-challenge_src_bootstrap_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./bootstrap */ 3234)).catch(err => console.error(err));
 
 /***/ })
 
@@ -403,19 +375,15 @@ __webpack_require__.d(exports, {
 /******/ 	});
 /******/ 	var installedModules = {};
 /******/ 	var moduleToHandlerMapping = {
-/******/ 		7653: () => (loadStrictSingletonVersion("default", "@angular/core", false, [1,18,2,0], () => (__webpack_require__.e("node_modules_angular_core_fesm2022_core_mjs").then(() => (() => (__webpack_require__(/*! @angular/core */ 7580))))))),
-/******/ 		7745: () => (loadStrictSingletonVersion("default", "@angular/common/http", false, [1,18,2,0], () => (__webpack_require__.e("node_modules_angular_common_fesm2022_http_mjs-_f9341").then(() => (() => (__webpack_require__(/*! @angular/common/http */ 6443))))))),
 /******/ 		2323: () => (loadStrictSingletonVersion("default", "@angular/common", false, [1,18,2,0], () => (__webpack_require__.e("node_modules_angular_common_fesm2022_common_mjs-_b4621").then(() => (() => (__webpack_require__(/*! @angular/common */ 316))))))),
+/******/ 		7653: () => (loadStrictSingletonVersion("default", "@angular/core", false, [1,18,2,0], () => (__webpack_require__.e("node_modules_angular_core_fesm2022_core_mjs").then(() => (() => (__webpack_require__(/*! @angular/core */ 7580))))))),
 /******/ 		9993: () => (loadStrictSingletonVersion("default", "@angular/core/primitives/signals", false, [1,18,2,0], () => (__webpack_require__.e("node_modules_angular_core_fesm2022_primitives_signals_mjs").then(() => (() => (__webpack_require__(/*! @angular/core/primitives/signals */ 5689))))))),
-/******/ 		8309: () => (loadStrictSingletonVersion("default", "@angular/core/primitives/event-dispatch", false, [1,18,2,0], () => (__webpack_require__.e("node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs").then(() => (() => (__webpack_require__(/*! @angular/core/primitives/event-dispatch */ 6745)))))))
+/******/ 		8309: () => (loadStrictSingletonVersion("default", "@angular/core/primitives/event-dispatch", false, [1,18,2,0], () => (__webpack_require__.e("node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs").then(() => (() => (__webpack_require__(/*! @angular/core/primitives/event-dispatch */ 6745))))))),
+/******/ 		7745: () => (loadStrictSingletonVersion("default", "@angular/common/http", false, [1,18,2,0], () => (__webpack_require__.e("node_modules_angular_common_fesm2022_http_mjs-_f9341").then(() => (() => (__webpack_require__(/*! @angular/common/http */ 6443))))))),
+/******/ 		7031: () => (loadStrictSingletonVersion("default", "@angular/router", false, [1,18,2,0], () => (__webpack_require__.e("node_modules_angular_router_fesm2022_router_mjs-_5a221").then(() => (() => (__webpack_require__(/*! @angular/router */ 5072)))))))
 /******/ 	};
 /******/ 	// no consumes in initial chunks
 /******/ 	var chunkMapping = {
-/******/ 		"projects_coding-challenge_src_app_components_countdown_countdown_component_ts": [
-/******/ 			7653,
-/******/ 			7745,
-/******/ 			2323
-/******/ 		],
 /******/ 		"node_modules_angular_common_fesm2022_http_mjs-_f9340": [
 /******/ 			2323,
 /******/ 			7653
@@ -431,6 +399,12 @@ __webpack_require__.d(exports, {
 /******/ 			7653,
 /******/ 			2323,
 /******/ 			7745
+/******/ 		],
+/******/ 		"projects_coding-challenge_src_bootstrap_ts": [
+/******/ 			2323,
+/******/ 			7653,
+/******/ 			7745,
+/******/ 			7031
 /******/ 		]
 /******/ 	};
 /******/ 	var startedInstallModules = {};
@@ -474,7 +448,7 @@ __webpack_require__.d(exports, {
 /******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 	// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
-/******/ 		"codingChallenge": 0
+/******/ 		"main": 0
 /******/ 	};
 /******/ 	
 /******/ 	__webpack_require__.f.j = (chunkId, promises) => {
@@ -561,10 +535,7 @@ __webpack_require__.d(exports, {
 /******/ // module cache are used so entry inlining is disabled
 /******/ // startup
 /******/ // Load entry module and return exports
-/******/ var __webpack_exports__ = __webpack_require__(7547);
-/******/ var __webpack_exports__get = __webpack_exports__.get;
-/******/ var __webpack_exports__init = __webpack_exports__.init;
-/******/ export { __webpack_exports__get as get, __webpack_exports__init as init };
+/******/ var __webpack_exports__ = __webpack_require__(1695);
 /******/ 
 
-//# sourceMappingURL=remoteEntry.js.map
+//# sourceMappingURL=main.js.map
