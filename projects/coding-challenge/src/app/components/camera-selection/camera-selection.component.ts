@@ -11,17 +11,18 @@ import { Component } from '@angular/core';
 export class CameraSelectionComponent {
   // Desired ranges
   desiredSubjectDistanceRange: [number, number] = [1, 10]; // Software Camera Subject Distance Array: [desiredMinDistance, desiredMaxDistance]
-  desiredLightLevelRange: [number, number] = [100, 200]; // Software Camera Light Level Array: [desiredMinLight, desiredMaxLight]
+  desiredLightLevelRange: [number, number] = [100, 1000]; // Software Camera Light Level Array: [desiredMinLight, desiredMaxLight]
 
   // Hardware cameras array: [minDistance, maxDistance, minLight, maxLight]
   hardwareCameras: [number, number, number, number][] = [
-    [1, 4, 100, 120],  // Camera 1
-    [4, 7, 120, 160],  // Camera 2
-    [7, 10, 160, 200], // Camera 3
+    [0, 5, 50, 500],  // Camera 1
+    [5, 10, 900, 1000],  // Camera 2
+    [0, 10, 700, 800], // Camera 3
   ];
 
   // Result variable
   isSufficient: boolean | null = null;
+  coverageType: "Single" | "Combined" | "Gap" | "None" = "None";
 
   // Method to check if hardware cameras are sufficient
   checkCameras() {
@@ -31,8 +32,8 @@ export class CameraSelectionComponent {
       this.hardwareCameras
     );
   }
-
-  private isSoftwareCameraSufficient(
+  // Old Function
+  /*private isSoftwareCameraSufficient(
     desiredSubjectDistanceRange: [number, number],
     desiredLightLevelRange: [number, number],
     hardwareCameras: [number, number, number, number][]
@@ -72,5 +73,62 @@ export class CameraSelectionComponent {
       }
     }
     return currentMaxLight >= desiredMaxLight;
+  }*/
+  
+  // Updated Function 
+  private isSoftwareCameraSufficient(
+    desiredSubjectDistanceRange: [number, number],
+    desiredLightLevelRange: [number, number],
+    hardwareCameras: [number, number, number, number][]
+  ): boolean {
+    const [desiredMinDistance, desiredMaxDistance] = desiredSubjectDistanceRange;
+    const [desiredMinLight, desiredMaxLight] = desiredLightLevelRange;
+    this.coverageType = "None";
+
+    // Check if a single camera suffices
+    for (const [camMinDist, camMaxDist, camMinLight, camMaxLight] of hardwareCameras) {
+      if (
+        camMinDist <= desiredMinDistance &&
+        camMaxDist >= desiredMaxDistance &&
+        camMinLight <= desiredMinLight &&
+        camMaxLight >= desiredMaxLight
+      ) {
+        this.coverageType = "Single";
+        return true; // Single camera suffices
+      }
+    }
+
+    // If no single camera suffices, check combined coverage
+    const distances: [number, number][] = hardwareCameras.map(([minD, maxD]) => [minD, maxD]);
+    const lights: [number, number][] = hardwareCameras.map(([_, __, minL, maxL]) => [minL, maxL]);
+    // console.log('distances & lights:', distances, lights);
+    const isRangeCovered = (
+      desiredMin: number,
+      desiredMax: number,
+      ranges: [number, number][]
+    ) => {
+      this.coverageType = "None";
+      ranges.sort((a, b) => a[0] - b[0]);
+      let currentMax = desiredMin;
+      // console.log('currentMax:', currentMax);
+      // console.log('ranges:', ranges);
+      for (const [min, max] of ranges) {
+        if (min > currentMax) {
+          this.coverageType = "Gap";
+          return false; // Gap detected
+        }
+        currentMax = Math.max(currentMax, max);
+        if (currentMax >= desiredMax) {
+          this.coverageType = "Combined";
+          return true; // Fully covered
+        }
+      }
+      return false; // Insufficient coverage
+    };
+
+    return (
+      isRangeCovered(desiredMinDistance, desiredMaxDistance, distances) &&
+      isRangeCovered(desiredMinLight, desiredMaxLight, lights)
+    );
   }
 }

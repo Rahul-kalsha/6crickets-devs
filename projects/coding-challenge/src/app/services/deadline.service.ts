@@ -15,6 +15,5 @@ export class DeadlineService {
         return of({ secondsLeft: 50 }); // Default value or handle accordingly
       })
     );
-    return of({ secondsLeft: 50 }); 
   }
 }
